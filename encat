@@ -1,0 +1,4 @@
+#!/bin/bash
+# Description:
+# Output content of file(s) after converted to locale encoding.
+cat "$@" | enconv

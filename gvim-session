@@ -1,0 +1,8 @@
+#!/bin/bash
+#open Session.vim with "gvim -S"
+if test -z "$1"; then
+    test -f "Session.vim" || { echo "No vim session file!"; exit 1; }
+    exec gvim -S Session.vim
+else
+    exec gvim -S "$@"
+fi

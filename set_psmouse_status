@@ -1,0 +1,4 @@
+#!/bin/bash
+
+xinput set-prop 'ImPS/2 ALPS GlidePoint' 'Device Enabled' \
+    `cat /home/wonder/.config/psmouse_last_status`

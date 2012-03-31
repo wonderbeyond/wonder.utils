@@ -1,0 +1,28 @@
+#!/usr/bin/python
+# coding=utf-8
+# 逐行转换文件编码(from gb18030 to utf8), *容许单行错误*
+import sys, chardet
+
+to_encoding = 'utf-8' # encoding to convet
+file_encoding = 'GB18030' # file encoding
+
+with open(sys.argv[1]) as fr:
+    line_num = 0
+    for l in fr:
+        line_num += 1
+        try:
+            out = l.decode(file_encoding)
+        except UnicodeDecodeError:
+            alt_encoding = chardet.detect(l)['encoding']
+            sys.stderr.write('the encoding of line %d was detect to be %s\n' %
+                            (line_num, alt_encoding))
+            try:
+                out = l.decode(alt_encoding)
+            except (LookupError, UnicodeDecodeError, TypeError):
+                sys.stderr.write('failed to convert line %d\n' % (line_num,))
+                continue
+        ##except LookupError as e:
+        ##    sys.stderr.write('%s\n' % (e.message,))
+        ##    continue
+        print out.encode(to_encoding),
+

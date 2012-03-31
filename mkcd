@@ -1,0 +1,12 @@
+#!/bin/bash
+# Author: Wonder
+# Description: Make a directory and get in(mkdir+cd).
+
+if mkdir "$@" || [ -e "$_" ]; then
+    for DIR in "$@"; do :; done
+    echo "Get into $DIR, execute exit to get out."
+    cd "$DIR"
+    exec bash
+else
+    exit 1
+fi

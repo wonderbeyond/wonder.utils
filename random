@@ -1,0 +1,14 @@
+#!/bin/bash
+# generate a random number (in specified area)
+# usge: random [min] [max] 
+
+if [ -z "$1" ]; then
+    echo "$RANDOM"
+else
+    if [ -z "$2" ]; then
+        expr $RANDOM + "$1"
+    else
+        enough_big_number=`expr "$RANDOM" + "$2"`
+        expr $enough_big_number % '(' "$2" - "$1" + 1 ')' + "$1"
+    fi
+fi

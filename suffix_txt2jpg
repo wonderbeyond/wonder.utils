@@ -1,0 +1,6 @@
+#!/bin/bash
+# Author: Wonder
+# Description:
+echo mv $1 ${1%txt}jpg
+mv $1 ${1%txt}jpg
+

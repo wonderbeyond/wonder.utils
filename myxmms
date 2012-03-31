@@ -1,0 +1,13 @@
+#!/bin/bash
+#更方便的使用xmms2
+
+case "CMD_$1" in
+
+"CMD_update")
+    nyxmms2 clear
+    nyxmms2 add ~/music/*.mp3 ;;
+"CMD_")
+    nyxmms2 toggle ;;
+*)
+    echo myxmms: Unsupported command ;;
+esac
