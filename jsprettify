@@ -1,0 +1,26 @@
+#!/usr/bin/python
+#prettify javascript code
+#$ pip install six jsbeautifier
+import sys
+import jsbeautifier
+
+def main():
+    if len(sys.argv) == 1:
+        infile = sys.stdin
+        outfile = sys.stdout
+    elif len(sys.argv) == 2:
+        infile = open(sys.argv[1], 'rb')
+        outfile = sys.stdout
+    elif len(sys.argv) == 3:
+        infile = open(sys.argv[1], 'rb')
+        outfile = open(sys.argv[2], 'wb')
+    else:
+        raise SystemExit(sys.argv[0] + " [infile [outfile]]")
+    try:
+        res = jsbeautifier.beautify(infile.read())
+    except ValueError, e:
+        raise SystemExit(e)
+    outfile.write(res + '\n')
+
+if __name__ == '__main__':
+    main()
