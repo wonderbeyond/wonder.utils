@@ -1,4 +1,5 @@
 #!/usr/bin/perl -pi
+# Normalize django template file
 
 s/\{%\s*/{% /g;
 s/\s*%\}/ %}/g;
